@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Youtube, Instagram } from 'lucide-react';
+import { ArrowDown, Github, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ThreeScene from './ThreeScene';
 
@@ -16,96 +16,120 @@ export default function HeroSection() {
       <ThreeScene />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        {/* Container Utama: Menggunakan flex-col untuk mobile, flex-row untuk desktop */}
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
+          
+          {/* BAGIAN FOTO PROFIL (Sisi Kiri) */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative group"
           >
-            <motion.span 
-              className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-primary mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              👋 Selamat datang di portfolio saya
-            </motion.span>
+            <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/20 shadow-glow p-1 bg-gradient-to-tr from-primary to-purple-500">
+              <div className="w-full h-full rounded-full overflow-hidden bg-background">
+                <img 
+                  src="/fotoazzaki.jpg" // Ganti dengan path foto kamu, misal: /profile.jpg
+                  alt="Azzaki Hasanul Arifin"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+            </div>
+            {/* Dekorasi Aksen di belakang foto */}
+            <div className="absolute -inset-4 bg-primary/10 rounded-full blur-3xl -z-10 group-hover:bg-primary/20 transition-colors" />
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
-          >
-            Fullstack Developer
-            <br />
-            <span className="text-gradient">&amp; Content Creator</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
-          >
-            Saya membangun aplikasi web yang indah dan fungsional, 
-            serta membagikan pengetahuan melalui konten yang inspiratif.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
-          >
-            <Button 
-              size="lg" 
-              className="rounded-full px-8 shadow-glow"
-              onClick={() => {
-                const element = document.querySelector('#projects');
-                if (element) element.scrollIntoView({ behavior: 'smooth' });
-              }}
+          {/* BAGIAN TULISAN (Sisi Kanan) */}
+          <div className="text-center md:text-left max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              Lihat Projects
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="rounded-full px-8"
-              onClick={() => {
-                const element = document.querySelector('#contact');
-                if (element) element.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Hubungi Saya
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex items-center justify-center gap-6"
-          >
-            {[
-              { icon: Github, href: '#', label: 'GitHub' },
-              { icon: Linkedin, href: '#', label: 'LinkedIn' },
-              { icon: Youtube, href: '#', label: 'YouTube' },
-              { icon: Instagram, href: '#', label: 'Instagram' },
-            ].map((social) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                className="p-3 rounded-full glass hover:shadow-glow transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={social.label}
+              <motion.span 
+                className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-primary mb-6"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
               >
-                <social.icon className="h-5 w-5 text-foreground" />
-              </motion.a>
-            ))}
-          </motion.div>
+                👋 Welcome To My Portfolio
+              </motion.span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
+            >
+              Hi I'M
+              <br />
+              <span className="text-gradient">Azzaki Hasanul Arifin</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-lg md:text-xl text-muted-foreground mb-8"
+            >
+              Saya adalah seorang siswa dari MAN 1 Banda Aceh yang
+              saat ini sedang belajar di kelas X-11. Ini adalah portofolio saya:
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="flex flex-col sm:flex-row items-center md:justify-start justify-center gap-4 mb-12"
+            >
+              <Button 
+                size="lg" 
+                className="rounded-full px-8 shadow-glow"
+                onClick={() => {
+                  const element = document.querySelector('#projects');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Lihat Projects
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="rounded-full px-8"
+                onClick={() => {
+                  const element = document.querySelector('#contact');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Hubungi Saya
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="flex items-center md:justify-start justify-center gap-6"
+            >
+              {[
+                { icon: Github, href: '#', label: 'GitHub' },
+                { icon: Youtube, href: '#', label: 'YouTube' },
+              ].map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  className="p-3 rounded-full glass hover:shadow-glow transition-all duration-300"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-5 w-5 text-foreground" />
+                </motion.a>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
 
