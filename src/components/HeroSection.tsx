@@ -113,8 +113,8 @@ export default function HeroSection() {
               className="flex items-center md:justify-start justify-center gap-6"
             >
               {[
-                { icon: Github, href: '#', label: 'GitHub' },
-                { icon: Youtube, href: '#', label: 'YouTube' },
+                { icon: Github, href: 'https://github.com/hasanul-ripin/kocak-kocak.git', label: 'GitHub' },
+                { icon: Youtube, href: 'https://www.youtube.com/', label: 'YouTube' },
               ].map((social) => (
                 <motion.a
                   key={social.label}
