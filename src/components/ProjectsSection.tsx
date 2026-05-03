@@ -5,35 +5,35 @@ import { Button } from '@/components/ui/button';
 const projects = [
   {
     title: 'E-Commerce Platform',
-    description: 'Platform e-commerce modern dengan fitur lengkap termasuk payment gateway, inventory management, dan analytics dashboard.',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
+    description: 'Platform e-commerce modern yang ada di HP bisa digunakan untuk belanja online.',
+    tags: ['Shopee', 'Lazada', 'Tokopedia', 'TikTok Shop'],
     image: '🛒',
     color: 'from-blue-500/20 to-cyan-500/20',
     github: '#',
     demo: '#',
   },
   {
-    title: 'Learning Management System',
-    description: 'Platform pembelajaran online dengan video streaming, quiz interaktif, dan progress tracking.',
-    tags: ['Next.js', 'TypeScript', 'MongoDB', 'WebRTC'],
+    title: 'Learning Platform',
+    description: 'Platform pembelajaran online yang mempermudah kamu dalam belajar.',
+    tags: ['Ruang Guru', 'Duolingo', 'Zenius', 'Quipper'],
     image: '📚',
     color: 'from-purple-500/20 to-pink-500/20',
     github: '#',
     demo: '#',
   },
   {
-    title: 'Social Media Dashboard',
-    description: 'Dashboard analytics untuk social media dengan real-time data visualization dan reporting.',
-    tags: ['React', 'D3.js', 'Firebase', 'Tailwind'],
+    title: 'Social Media Platform',
+    description: 'Platform yang sangat berguna untuk social media dan sharing-sharing.',
+    tags: ['WhatsApp', 'Instagram', 'TikTok', 'Facebook'],
     image: '📊',
     color: 'from-orange-500/20 to-red-500/20',
     github: '#',
     demo: '#',
   },
   {
-    title: 'AI Content Generator',
-    description: 'Tool untuk generate konten menggunakan AI dengan integrasi berbagai model language.',
-    tags: ['Python', 'FastAPI', 'OpenAI', 'React'],
+    title: 'AI Platform',
+    description: 'Situs atau APK berbasis AI untuk mempermudah mencari informasi.',
+    tags: ['Google', 'ChatGPT', 'Gemini', 'Meta AI'],
     image: '🤖',
     color: 'from-green-500/20 to-teal-500/20',
     github: '#',
@@ -41,8 +41,8 @@ const projects = [
   },
   {
     title: 'Video Editing Tutorial',
-    description: 'Seri tutorial video editing dengan 100+ episode dan 10k+ subscribers.',
-    tags: ['Premiere Pro', 'After Effects', 'YouTube'],
+    description: 'Video tutorial yang sudah tersebar di banyak platform yang dapat mempermudah pengerjaan suatu tugas.',
+    tags: ['TikTok', 'Instagram', 'YouTube'],
     image: '🎬',
     color: 'from-red-500/20 to-orange-500/20',
     isContent: true,
@@ -50,8 +50,8 @@ const projects = [
   },
   {
     title: 'Coding Tips & Tricks',
-    description: 'Konten tips programming dan best practices untuk developer Indonesia.',
-    tags: ['Instagram', 'TikTok', 'YouTube Shorts'],
+    description: 'Konten tips & tricks dalam melakukan proggaming atau coding.',
+    tags: ['Instagram', 'TikTok', 'YouTube'],
     image: '💡',
     color: 'from-cyan-500/20 to-blue-500/20',
     isContent: true,
@@ -63,6 +63,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -77,6 +78,7 @@ export default function ProjectsSection() {
           <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
         </motion.div>
 
+        {/* Grid Projects */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
@@ -87,11 +89,40 @@ export default function ProjectsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="h-full p-6 glass rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2">
-                <div className={`aspect-video rounded-xl mb-4 flex items-center justify-center bg-gradient-to-br ${project.color}`}>
-                  <span className="text-6xl">{project.image}</span>
+              <div className="h-full p-6 glass rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2 border border-white/10">
+                
+                {/* --- BAGIAN IMAGE DENGAN ANIMASI --- */}
+                <div className={`aspect-video rounded-xl mb-4 flex items-center justify-center bg-gradient-to-br ${project.color} relative overflow-hidden`}>
+                  
+                  {/* Dekorasi Partikel Latar Belakang */}
+                  <motion.div 
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.5, 0.3] 
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                    className="absolute inset-0 bg-white/10 blur-2xl rounded-full"
+                  />
+
+                  {/* Emoji Utama dengan Animasi Melayang */}
+                  <motion.span 
+                    className="text-6xl z-10"
+                    animate={{ 
+                      y: [0, -12, 0],
+                      rotate: index % 2 === 0 ? [-5, 5, -5] : [5, -5, 5] // Rotasi bergantian kiri/kanan
+                    }}
+                    transition={{ 
+                      duration: 3 + (index * 0.2), // Kecepatan sedikit berbeda tiap card
+                      repeat: Infinity,
+                      ease: "easeInOut" 
+                    }}
+                    whileHover={{ scale: 1.2, rotate: 0 }} // Membesar saat kursor di atasnya
+                  >
+                    {project.image}
+                  </motion.span>
                 </div>
                 
+                {/* --- BAGIAN TEKS --- */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
                     {project.isContent && (
@@ -119,8 +150,9 @@ export default function ProjectsSection() {
                     ))}
                   </div>
                   
+                  {/* Tombol Aksi */}
                   <div className="flex gap-2 pt-2">
-                    {project.github && (
+                    {project.github && project.github !== '#' && (
                       <Button variant="outline" size="sm" className="rounded-full" asChild>
                         <a href={project.github}>
                           <Github className="h-4 w-4 mr-1" />
@@ -128,7 +160,7 @@ export default function ProjectsSection() {
                         </a>
                       </Button>
                     )}
-                    {project.demo && (
+                    {project.demo && project.demo !== '#' && (
                       <Button size="sm" className="rounded-full" asChild>
                         <a href={project.demo}>
                           <ExternalLink className="h-4 w-4 mr-1" />
@@ -136,8 +168,8 @@ export default function ProjectsSection() {
                         </a>
                       </Button>
                     )}
-                    {project.youtube && (
-                      <Button size="sm" className="rounded-full" asChild>
+                    {project.youtube && project.youtube !== '#' && (
+                      <Button size="sm" className="rounded-full bg-red-600 hover:bg-red-700" asChild>
                         <a href={project.youtube}>
                           <Play className="h-4 w-4 mr-1" />
                           Watch
